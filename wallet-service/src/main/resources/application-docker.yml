@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5432/fincore_wallet
+    username: postgres
+    password: ${SPRING_DATASOURCE_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  data:
+    redis:
+      host: redis
+      port: 6379
+
+  kafka:
+    bootstrap-servers: kafka:9092
+
+server:
+  port: 8082

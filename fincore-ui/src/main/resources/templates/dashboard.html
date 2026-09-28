@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FinCore - Dashboard</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="nav-brand">
+        FinCore
+    </div>
+
+    <div class="nav-right">
+
+        <span id="userName">
+            User
+        </span>
+
+        <button id="logoutBtn" class="logout-btn">
+            Logout
+        </button>
+
+    </div>
+
+</nav>
+
+
+<main class="dashboard">
+
+    <div class="welcome">
+        <h2>Welcome, <span id="welcomeName">User</span></h2>
+        <p>Manage your wallet and transactions.</p>
+    </div>
+
+
+    <!-- Wallet -->
+
+    <section class="wallet-card">
+
+        <div>
+            <p class="card-label">
+                Wallet Balance
+            </p>
+
+            <h1 id="walletBalance">
+                ₹0.00
+            </h1>
+        </div>
+
+        <div class="wallet-id">
+            Wallet ID:
+            <span id="walletId">
+                Loading...
+            </span>
+        </div>
+
+    </section>
+
+
+    <div class="action-grid">
+
+        <!-- Deposit -->
+
+        <section class="panel">
+
+            <h3>Deposit Money</h3>
+
+            <form id="depositForm">
+
+                <div class="form-group">
+
+                    <label>Amount</label>
+
+                    <input
+                            type="number"
+                            id="depositAmount"
+                            min="1"
+                            step="0.01"
+                            placeholder="Enter amount"
+                            required>
+
+                </div>
+
+                <button type="submit" class="primary-btn">
+                    Deposit
+                </button>
+
+            </form>
+
+            <div id="depositMessage" class="message"></div>
+
+        </section>
+
+
+        <!-- Transfer -->
+
+        <section class="panel">
+
+            <h3>Transfer Money</h3>
+
+            <form id="transferForm">
+
+                <div class="form-group">
+
+                    <label>Receiver Wallet ID</label>
+
+                    <input
+                            type="text"
+                            id="receiverWalletId"
+                            placeholder="Receiver wallet UUID"
+                            required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Amount</label>
+
+                    <input
+                            type="number"
+                            id="transferAmount"
+                            min="1"
+                            step="0.01"
+                            placeholder="Enter amount"
+                            required>
+
+                </div>
+
+                <button type="submit" class="primary-btn">
+                    Transfer
+                </button>
+
+            </form>
+
+            <div id="transferMessage" class="message"></div>
+
+        </section>
+
+    </div>
+
+
+    <!-- Recent Transactions -->
+
+    <section class="panel transactions-panel">
+
+        <div class="section-header">
+
+            <div>
+                <h3>Recent Transactions</h3>
+                <p>Latest wallet activity</p>
+            </div>
+
+            <button
+                    id="refreshBtn"
+                    class="secondary-btn">
+                Refresh
+            </button>
+
+        </div>
+
+        <div id="transactionsContainer">
+
+            <div class="loading">
+                Loading transactions...
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script src="/js/app.js"></script>
+
+</body>
+
+</html>

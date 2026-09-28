@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5432/fincore_user
+    username: postgres
+    password: ${SPRING_DATASOURCE_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  kafka:
+    bootstrap-servers: kafka:9092
+
+server:
+  port: 8081
+
+app:
+  jwt:
+    secret: ${APP_JWT_SECRET}
+    expiration: ${APP_JWT_EXPIRATION}
+
+logging:
+  level:
+    org.springframework.security: INFO

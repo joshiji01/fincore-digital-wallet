@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: fincore-ui
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+
+server:
+  port: 8090

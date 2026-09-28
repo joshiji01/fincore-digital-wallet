@@ -307,43 +307,7 @@ If Kafka becomes temporarily unavailable, the event remains in the database and 
 
 The Transaction Service also handles duplicate events using the transaction reference ID and database uniqueness constraints.
 
-Database Design
-User
-id
-name
-email
-password_hash
-role
-created_at
-Wallet
-id
-user_id
-balance
-version
-created_at
-updated_at
-Transaction
-id
-reference_id
-sender_wallet_id
-receiver_wallet_id
-amount
-status
-type
-created_at
-completed_at
-Beneficiary
-id
-user_id
-beneficiary_user_id
-nickname
-created_at
 
-Money values use BigDecimal in Java and NUMERIC(19,2) in PostgreSQL.
-
-UUIDs are used for entity identifiers.
-
-Services do not create JPA relationships across service boundaries. Cross-service references are stored as UUID values.
 
 API Endpoints
 Authentication
@@ -410,7 +374,8 @@ FinCore UI	8090	8091
 PostgreSQL	5432	15432
 Redis	6379	6380
 Kafka	9092	9092
-Key Backend Concepts Demonstrated
+
+Key Backend Concepts Demonstrated:
 Microservices architecture
 Service-level data ownership
 JWT authentication
@@ -428,7 +393,9 @@ Database constraints
 REST API design
 Docker containerization
 API Gateway routing
-Project Structure
+
+
+Project Structure:
 fincore/
 │
 ├── api-gateway/
@@ -442,49 +409,7 @@ fincore/
 ├── .env.example
 ├── .gitignore
 └── README.md
-Design Decisions
-Why separate services?
 
-Each service owns a specific business responsibility and its corresponding data.
-
-Why PostgreSQL?
-
-Wallet and transaction data require durable, consistent persistence and relational constraints.
-
-Why Redis?
-
-Redis reduces repeated database reads and provides fast temporary storage for cache and idempotency data.
-
-Why Kafka?
-
-Kafka decouples transaction event publishing from transaction-history persistence.
-
-Why the Outbox Pattern?
-
-It prevents the application from losing an event after a successful database transaction when the message broker is temporarily unavailable.
-
-Why BigDecimal?
-
-Floating-point types are unsuitable for exact monetary calculations.
-
-Why deterministic locking?
-
-Locking wallets in a consistent order reduces the possibility of circular-wait deadlocks during concurrent transfers.
-
-Future Improvements
-
-Potential production improvements include:
-
-Refresh-token based authentication
-JWT revocation/session management
-Rate limiting
-Distributed tracing
-Centralized configuration
-Secrets management
-Monitoring and metrics
-Stronger Kafka delivery guarantees
-Automated integration testing
-Production deployment with managed infrastructure
 Author
 
 Tarun Joshi
